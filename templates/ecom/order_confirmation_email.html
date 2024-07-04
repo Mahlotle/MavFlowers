@@ -1,0 +1,13 @@
+Order Confirmation
+
+Dear {{ order.customer.user.username }}
+
+Your order with the following details has been confirmed:
+Order ID:{{ order.id }}
+Product Name:{{ order.product.name }}
+Price: R{{ order.product.price }}
+Order Status:{{ order.status }}
+
+Thank you for shopping with us! @ Meatbrokers
+
+Download your invoice {{ invoice_url }} here 

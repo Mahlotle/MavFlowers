@@ -1,0 +1,86 @@
+{% extends 'ecom/customer_base.html' %}
+{% load static %}
+{% block content %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" type="image/x-icon" href="{% static 'images/logo/meatBroker Logo.png' %}" />
+  <title>Meat Brokers</title>
+
+  <style media="screen">
+    body {
+      background-color:#8c9eff;
+    }
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: black; /* Blue background */
+      color: #fff; /* White text color */
+      text-align: center;
+      text-decoration: none;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: lightslategray; /* Darker blue on hover */
+    }
+
+    .button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+    }
+
+    .button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+    }
+
+    .button:hover span {
+    padding-right: 25px;
+    }
+
+    .button:hover span:after {
+    opacity: 1;
+    right: 0;
+    }
+  </style>
+</head>
+<br><br><br>
+<body style="background-color: gainsboro;">
+<div style="padding-left:300px; color: white;" class="container">
+
+        <div class="col-sm-2 col-md-2">
+          {% if customer.profile_pic %}
+            <img src="{% static customer.profile_pic.url %}"   alt="profile pic" class="img-rounded img-responsive" />
+          {%else%}
+          <img src="{% static 'images/user1.jpg' %}" alt="default profile pic" class="img-rounded img-responsive" />
+          {%endif%}
+        </div>
+        <div class="col-sm-4 col-md-4">
+            <blockquote>
+                <p>{{request.user}}</p> <small><cite title="Source Title">{{customer.address}}  <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+            </blockquote>
+            <p> <i class="glyphicon glyphicon-phone"></i> {{customer.mobile}}
+            </p>
+        </div>
+
+</div>
+<br>
+<div style="text-align: center; color: white;">
+  <a href="/edit-profile"><button class="button" ><span>Edit Profile </span></button></a>
+</div>
+<br><br><br><br><br><br>
+
+
+
+{% endblock content %}

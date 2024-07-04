@@ -1,0 +1,127 @@
+{% extends 'ecom/homebase.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Cart</title>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      padding-top: 50px; /* Adjust top padding to accommodate navbar if present */
+    }
+
+    .button {
+      display: inline-block;
+      border-radius: 4px;
+      background-color: #f4511e;
+      border: none;
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 20px;
+      padding: 15px 30px;
+      width: auto;
+      transition: all 0.3s;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    .button:hover {
+      background-color: #e64e1e;
+    }
+
+    .panel-heading {
+      background-color: #f4511e !important;
+      color: white !important;
+      text-align: center;
+      padding: 15px 0; /* Adjust vertical padding */
+    }
+
+    .table th {
+      text-align: center;
+    }
+
+    .table td {
+      vertical-align: middle;
+      text-align: center;
+      padding: 15px; /* Adjust padding for cell content */
+    }
+
+    .table img {
+      max-width: 60px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .button2 {
+      background-color: white;
+      color: black;
+      border: 2px solid #008CBA;
+      padding: 10px 20px;
+      font-size: 18px;
+      margin-top: 20px; /* Adjust top margin */
+    }
+
+    .button2:hover {
+      background-color: #008CBA;
+      color: white;
+    }
+
+    .container {
+      max-width: 800px; /* Limit width for better readability */
+      margin: 0 auto; /* Center align container */
+    }
+  </style>
+</head>
+<body>
+
+  <br><br><br><br><br>
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">My Cart</h3>
+    </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Image</th>
+          <th>Price</th>
+          <th>Description</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in products %}
+          <tr>
+            <td>{{ p.name }}</td>
+            <td><img src="{% static p.product_image.url %}" alt="Product Image"></td>
+            <td>R{{ p.price }}</td>
+            <td>{{ p.description }}</td>
+            <td><a href="{% url 'remove-from-cart' p.id %}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></a></td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="5" style="text-align: center;">No products in your cart.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div style="text-align: center;">
+  <button class="button button2">Total: R{{ total }}</button>
+  <a href="/customer-address" class="button"><span>Purchase</span></a>
+</div>
+<br><br><br><br><br>
+</body>
+</html>
+
+{% endblock content %}

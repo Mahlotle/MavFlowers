@@ -1,0 +1,263 @@
+{% extends 'ecom/customer_base.html' %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Meatbrokers</title>
+  <link rel="icon" type="image/x-icon" href="{% static 'images/logo/meatBroker Logo.png' %}" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <style media="screen">
+   
+    h3 {
+        font-size: 16px;
+    }
+    .text-navy {
+        color: #1ab394;
+    }
+    .cart-product-imitation {
+      text-align: center;
+      padding-top: 30px;
+      height: 80px;
+      width: 80px;
+      background-color: #f8f8f9;
+    }
+    .product-imitation.xl {
+      padding: 120px 0;
+    }
+    .product-desc {
+      padding: 20px;
+      position: relative;
+    }
+    .ecommerce .tag-list {
+      padding: 0;
+    }
+    .ecommerce .fa-star {
+      color: #d1dade;
+    }
+    .ecommerce .fa-star.active {
+      color: #f8ac59;
+    }
+    .ecommerce .note-editor {
+      border: 1px solid #e7eaec;
+    }
+    table.shoping-cart-table {
+      margin-bottom: 0;
+    }
+    table.shoping-cart-table tr td {
+      border: none;
+      text-align: right;
+    }
+    table.shoping-cart-table tr td.desc,
+    table.shoping-cart-table tr td:first-child {
+      text-align: left;
+    }
+    table.shoping-cart-table tr td:last-child {
+      width: 80px;
+    }
+    .ibox {
+      clear: both;
+      margin-bottom: 25px;
+      margin-top: 0;
+      padding: 0;
+    }
+    .ibox.collapsed .ibox-content {
+      display: none;
+    }
+    .ibox:after,
+    .ibox:before {
+      display: table;
+    }
+    .ibox-title {
+      -moz-border-bottom-colors: none;
+      -moz-border-left-colors: none;
+      -moz-border-right-colors: none;
+      -moz-border-top-colors: none;
+      background-color: #ffffff;
+      border-color: #e7eaec;
+      border-image: none;
+      border-style: solid solid none;
+      border-width: 3px 0 0;
+      color: inherit;
+      margin-bottom: 0;
+      padding: 14px 15px 7px;
+      min-height: 48px;
+    }
+    .ibox-content {
+      background-color: #ffffff;
+      color: inherit;
+      padding: 15px 20px 20px 20px;
+      border-color: #e7eaec;
+      border-image: none;
+      border-style: solid solid none;
+      border-width: 1px 0;
+    }
+    .ibox-footer {
+      color: inherit;
+      border-top: 1px solid #e7eaec;
+      font-size: 90%;
+      background: #ffffff;
+      padding: 10px 15px;
+    }
+
+    .paypal-button-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .paypal-button-container {
+      max-width: 1000px;
+      text-align: center.;
+    }
+    
+  </style>
+
+</head>
+
+<body>
+  <br><br><br>
+  <div class="container">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <span class="pull-right">(<strong>1</strong>) items</span>
+                        <h5>Items in your cart</h5>
+                    </div>
+                    <!--Start of ibox-content-->
+                    {% for p in products %}
+                    <div class="ibox-content">
+                      <div class="table-responsive">
+                          <table class="table shoping-cart-table">
+                              <tbody>
+                              {% if p %}
+                              <tr>
+                                  <td width="90">
+                                      <div class="cart-product-imitation">
+                                        <img src="{% static p.product_image.url %}" alt="Profile Pic" height="40px" width="40px" />
+                                      </div>
+                                  </td>
+                                  <td class="desc">
+                                      <h3>
+                                      <a href="#" class="text-navy">
+                                        {{p.name}}
+                                      </a>
+                                      </h3>
+                                      <p class="small">
+                                        {{p.description}}
+                                      </p>
+                                  </td>
+                                  <td width="65">
+                                      <input type="text" class="form-control" placeholder="1">
+                                  </td>
+                                  <td>
+                                      <h4>
+                                        R{{p.price}}
+                                      </h4>
+                                  </td>
+                              </tr>
+                              {% else %}
+                              <h1> no products</h1>
+                              {% endif %}
+                              </tbody>
+                          </table>
+                      </div>
+                    </div>
+                    <!--End of ibox-content-->
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>Cart Summary</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <span>
+                            Total
+                        </span>
+                        <h2 class="font-bold">
+                          R{{total}}
+                        </h2>
+    
+                        <hr>
+                        <span class="text-muted small">
+                            *For South Africa and Southern African Development Community (SADC) applicable sales tax will be applied
+                        </span>
+                    </div>
+                </div>
+    
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>Support</h5>
+                    </div>
+                    <div class="ibox-content text-center">
+                        <h3><i class="fa fa-phone"></i> +27 100783001</h3>
+                        <span class="small">
+                            Please contact with us if you have any questions. We are avalible 24h.
+                        </span>
+                    </div>
+                </div>
+    
+                <div class="ibox">
+                    <div class="ibox-content">
+    
+                        <p class="font-bold">
+                          Pay here
+                        </p>
+                        <hr>
+                        <div id="paypal-button-container"></div>
+
+                        <!-- Include the PayPal JavaScript SDK -->
+                        <script src="https://www.paypal.com/sdk/js?client-id=AWDL5H-oS83gPBNTmWrMqrI1FDBRlCld3fiGgJUfmBn7EzV8k6aX3Qg1u1M9iaPIfqDU2uqJzKJcrCq9&currency=USD"></script>
+
+                        <script>
+                            // Render the PayPal button into #paypal-button-container
+                            paypal.Buttons({
+                                createOrder: function(data, actions) {
+                                    return (actions.order.create)({
+                                        purchase_units: [{
+                                        amount: {
+                                        value: {{total}}
+                                        }
+                              }]
+                                    });
+                                },
+                                
+                                onApprove: function(data, actions){
+                              return actions.order.capture().then(function(details){
+                                var payerName = details.payer.name.given_name;
+                                if (details.payer.name.surname) {
+                                    payerName += ' ' + details.payer.name.surname;
+                                }
+                              alert('Transaction completed by ' + payerName);
+                              // Redirect to payment success URL
+                              window.location.href = "{% url 'payment_success' %}";
+                            });
+                          }
+                          }).render('#paypal-button-container');
+                        </script>
+                       
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+  </div>
+</body>
+
+</html>
+
+{% endblock content %}
+
+
+
+
+

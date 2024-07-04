@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" type="image/x-icon" href="{% static 'images/logo/meatBroker Logo.png' %}" />
+  <title>Meat Brokers</title>
+  <style media="screen">
+    .footer{
+      position: fixed;
+    }
+  </style>
+</head>
+
+<body style="background-color: grey;">
+  {%if request.user.is_authenticated%}
+    {% include "ecom/customer_navbar.html" %} <!--only request.user.is_authenticated-->
+  {%else%}
+    {% include "ecom/navbar.html" %}
+  {%endif%}
+  <br><br><br>
+  <h3 style="text-align:center; color: white;"><strong>🥩 Welcome to MeatBrokers Pty Ltd - Your Premier Online Butchery 🥩</strong> </h3>
+  <br><br>
+  <h4 style="text-align:center; color: white;">
+    At MeatBrokers, we're passionate about delivering the <br>
+    finest quality meats right to your doorstep. As your trusted<br>
+    online butcher, we source only the freshest cuts from local <br>
+    farms and suppliers, ensuring that every bite is a true taste sensation.<br>
+    With a commitment to excellence and a dedication to customer satisfaction,<br>
+    we strive to provide you with a seamless shopping experience.<br><br><br><br>
+    From succulent steaks to tender roasts, juicy burgers to flavorful sausages, <br>
+    our diverse selection has something to please every palate.<br>
+    Whether you're planning a family barbecue, a cozy dinner for two,<br>
+    or simply stocking up your freezer, we've got you covered.<br><br>
+    Explore our wide range of premium meats, place your order with confidence,<br>
+    and let us handle the rest.<br><br>
+    Join the MeatBrokers family today and discover the convenience of online butchery shopping without compromising on quality. Freshness, flavor, and satisfaction - that's the MeatBrokers promise. 
+  </h4>
+  <br>
+  <h3 style="text-align:center; color: white;">“MeatBrokers Pty Ltd” </h3>
+  <br><br><br><br><br><br><br><br><br><br>
+  {% include "ecom/footer.html" %}
+</body>
+
+</html>

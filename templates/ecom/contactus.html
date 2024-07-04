@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" type="image/x-icon" href="{% static 'images/logo/meatBroker Logo.png' %}">
+  <title>Meatbrokers - Feedback</title>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      padding-top: 50px; /* Space for fixed navbar */
+    }
+
+    .grey-bg {
+      background-color: #ccc; /* Grey background color */
+    }
+
+    .card {
+      width: 80%;
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .alert-success {
+      background-color: #5cb85c;
+      color: white;
+      border-color: #4cae4c;
+      padding: 15px;
+      text-align: center;
+      margin-bottom: 30px;
+      border-radius: 5px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .btn-primary {
+      background-color: #0000FF;
+      border-color: #0000FF;
+      font-size: 18px;
+      padding: 10px 20px;
+      width: 100%; /* Full width button */
+    }
+
+    .btn-primary:hover {
+      background-color: #0000CC;
+      border-color: #0000CC;
+    }
+  </style>
+</head>
+
+<body class="grey-bg">
+
+  {% if request.user.is_authenticated %}
+    {% include "ecom/customer_navbar.html" %}
+  {% else %}
+    {% include "ecom/navbar.html" %}
+  {% endif %}
+  <br> <br> <br> <br> 
+  <div class="container text-center"> <!-- Center align container -->
+    <div class="card">
+      <h3 class='alert alert-success'>Send Us Your Valuable Feedback!</h3>
+
+      <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          {{ form.as_p }}
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Send Message" class="btn btn-primary btn-lg">
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <br> <br> <br> <br> 
+
+  {% include "ecom/footer.html" %}
+
+</body>
+
+</html>
