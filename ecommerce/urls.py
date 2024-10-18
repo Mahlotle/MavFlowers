@@ -56,6 +56,7 @@ urlpatterns = [
     path('payment-success/', views.payment_success_view, name='payment_success'),
     
     # Add a URL pattern to serve the PDF file
+    #Adding the invoice pdf url
     path('invoice/<int:order_id>/', views.invoice_pdf_view, name='invoice_pdf'),
     
     #path('payment-failure/', views.payment_failure, name='payment-failure'),
